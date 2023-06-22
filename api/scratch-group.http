@@ -1,0 +1,8 @@
+### 그룹 생성
+POST http://localhost:8080/groups
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob25nQGFiYy5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjg3NDQxOTk1LCJleHAiOjE2ODc0NDU1OTV9.g9NnDebUoWhM0XthuBsdoZSVGg5LkGOvwMLhkOezpPM
+
+{
+  "groupName" : "testGroup"
+}

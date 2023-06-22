@@ -41,6 +41,8 @@ public class User {
     private String phone;
     @Column(name = "password")
     private String password;
+
+    @Builder.Default
     @OneToMany(mappedBy = "user")
     private List<JoinGroup> groups = new ArrayList<>();
 

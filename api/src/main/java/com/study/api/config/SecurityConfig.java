@@ -31,7 +31,7 @@ public class SecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers("/**/sign-in2",
+            .antMatchers("/**/sign-in",
                 "/**/sign-up")
             .permitAll()
             .and()
