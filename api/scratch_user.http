@@ -1,0 +1,20 @@
+### 회원 가입
+POST http://localhost:8080/users/sign-up
+Content-Type: application/json
+
+{
+  "userEmail" : "hong@abc.com",
+  "userName" : "홍길동",
+  "password" : "12341234",
+  "phone" : "01012341234"
+
+}
+
+### 로그인
+POST http://localhost:8080/users/sign-in
+Content-Type: application/json
+
+{
+  "userEmail" : "hong@abc.com",
+  "password" : "12341234"
+}

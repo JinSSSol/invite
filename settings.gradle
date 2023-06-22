@@ -1,0 +1,4 @@
+rootProject.name = 'invite'
+include 'domain'
+include 'api'
+
