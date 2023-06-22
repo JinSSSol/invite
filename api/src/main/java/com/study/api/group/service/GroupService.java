@@ -27,14 +27,13 @@ public class GroupService {
         User user = userRepository.findByUserEmail(userEmail)
             .orElseThrow(() -> new CustomException(NOT_FOUND_USER));
 
-        Group group = Group.builder().groupName(request.getGroupName()).build();
-        groupRepository.save(group);
+        Group group = groupRepository.save(
+            Group.builder().groupName(request.getGroupName()).build());
 
-        JoinGroup joinGroup = JoinGroup.builder()
-            .group(group)
-            .user(user)
-            .build();
-        joinGroupRepository.save(joinGroup);
+        JoinGroup joinGroup = joinGroupRepository.save(JoinGroup.builder()
+                                .group(group)
+                                .user(user)
+                                .build());
 
         group.getUsers().add(joinGroup);
         user.getGroups().add(joinGroup);
