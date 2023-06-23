@@ -38,9 +38,7 @@ public class JoinGroup {
     @JoinColumn(name = "group_id")
     private Group group;
 
-
     private Boolean isManager;
-    private Boolean isActive;
 
     @CreatedDate
     private LocalDateTime createdAt;

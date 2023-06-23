@@ -10,10 +10,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob25nQGFiYy5jb20iLCJyb2xlc
 ### 초대 링크 생성 - 신규 회원
 POST http://localhost:8080/groups/invite/new/4
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob25nQGFiYy5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjg3NTE5NDcwLCJleHAiOjE2ODc1MjMwNzB9.EhP2Q3A5w42b2zSrX6ZyxObz6w9mLy74olTaoS4V1Q4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob25nQGFiYy5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjg3NTMwNjU5LCJleHAiOjE2ODc1MzQyNTl9.Xc40HCngEQo-WsktfWxRD2CqDk_wkrnw6ojaeGoM63M
 
 {
-  "userEmail" : "new1@abc.com",
+  "userEmail" : "new3@abc.com",
   "userName" : "new1",
   "phone" : "01012341234"
+}
+
+### 초대 링크 생성 - 기존 회원
+POST http://localhost:8080/groups/invite/exist/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob25nQGFiYy5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjg3NTMzOTAxLCJleHAiOjE2ODc1Mzc1MDF9.yQiQlN4hXYkVX0ZKnbpOCLVrGo3Rs3gTYkqKdhnhZoU
+
+{
+  "userEmail" : "abc@abc.com"
 }

@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface JoinGroupRepository extends JpaRepository<JoinGroup, Long> {
     Optional<JoinGroup> findByGroup_Id(Long groupId);
     Optional<JoinGroup> findByUser_IdAndGroup_Id(Long userId, Long groupId);
+    boolean existsByUser_IdAndGroup_Id(Long userId, Long groupId);
 }

@@ -33,7 +33,6 @@ public class GroupService {
         JoinGroup joinGroup = joinGroupRepository.save(JoinGroup.builder()
             .group(group)
             .user(user)
-            .isActive(true)
             .isManager(true)
             .build());
 

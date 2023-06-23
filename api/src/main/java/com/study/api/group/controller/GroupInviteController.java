@@ -21,9 +21,16 @@ public class GroupInviteController {
     private final GroupInviteService groupInviteService;
 
     @PostMapping("/new/{groupId}")
-    public ResponseEntity<InviteDto> createInviteLink(@PathVariable Long groupId,
+    public ResponseEntity<InviteDto> inviteNewUser(@PathVariable Long groupId,
         @Valid @RequestBody InviteForm.New form, Principal principal) {
-        InviteDto response = groupInviteService.inviteNewUser(groupId, form, principal);
+        InviteDto response = groupInviteService.inviteNewUser(groupId, form, principal.getName());
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/exist/{groupId}")
+    public ResponseEntity<InviteDto> inviteExistUser(@PathVariable Long groupId,
+        @Valid @RequestBody InviteForm.Exist form, Principal principal) {
+        InviteDto response = groupInviteService.inviteExistUser(groupId, form, principal.getName());
         return ResponseEntity.ok(response);
     }
 

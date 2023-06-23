@@ -25,7 +25,11 @@ public enum ErrorCode {
     // 그룹 초대
     NOT_FOUND_GROUP(BAD_REQUEST, "그룹을 찾을 수 없습니다."),
     USER_NOT_JOINED_THIS_GROUP(BAD_REQUEST, "해당 그룹 회원이 아닙니다."),
-    NOT_HAVE_MANAGER_AUTHORITY(BAD_REQUEST, "매니저 권한이 없습니다.");
+    NOT_HAVE_MANAGER_AUTHORITY(BAD_REQUEST, "매니저 권한이 없습니다."),
+    ALREADY_JOINED_USER(BAD_REQUEST, "이미 가입된 회원입니다."),
+
+    // Json
+    JSON_PARSING_ERROR(BAD_REQUEST, "JSON 데이터를 파싱하는데 실패하였습니다.");
     private final HttpStatus httpStatus;
     private final String message;
 
