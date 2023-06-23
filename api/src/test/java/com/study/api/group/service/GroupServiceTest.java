@@ -4,8 +4,11 @@ package com.study.api.group.service;
 import static com.study.api.exception.ErrorCode.NOT_FOUND_USER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import com.study.api.exception.CustomException;
 import com.study.api.group.dto.GroupDto;
@@ -20,6 +23,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -71,8 +75,12 @@ class GroupServiceTest {
 
         // when
         GroupDto.Response response = groupService.add(request, "test@abc.com");
+        ArgumentCaptor<JoinGroup> captor = ArgumentCaptor.forClass(JoinGroup.class);
 
         // then
+        verify(joinGroupRepository, times(1)).save(captor.capture());
+        assertTrue(captor.getValue().getIsManager());
+        assertTrue(captor.getValue().getIsActive());
         assertEquals(response.getId(), 1L);
         assertEquals(response.getGroupName(), "testGroup");
     }

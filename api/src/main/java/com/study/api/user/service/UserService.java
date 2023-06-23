@@ -36,6 +36,7 @@ public class UserService {
                 .userName(form.getUserName())
                 .phone(form.getPhone())
                 .password(passwordEncoder.encode(form.getPassword()))
+                .isActive(true)
                 .build()));
     }
 

@@ -31,9 +31,11 @@ public class GroupService {
             Group.builder().groupName(request.getGroupName()).build());
 
         JoinGroup joinGroup = joinGroupRepository.save(JoinGroup.builder()
-                                .group(group)
-                                .user(user)
-                                .build());
+            .group(group)
+            .user(user)
+            .isActive(true)
+            .isManager(true)
+            .build());
 
         group.getUsers().add(joinGroup);
         user.getGroups().add(joinGroup);

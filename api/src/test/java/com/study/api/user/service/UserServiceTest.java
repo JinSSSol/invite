@@ -4,6 +4,7 @@ import static com.study.api.exception.ErrorCode.NOT_FOUND_USER;
 import static com.study.api.exception.ErrorCode.NOT_MATCHED_PASSWORD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
@@ -55,7 +56,6 @@ class UserServiceTest {
     @DisplayName("회원가입 성공")
     void signUp_SUCCESS() {
         // given
-
         given(userRepository.existsByUserEmail("test@abc.com"))
             .willReturn(false);
 
@@ -76,6 +76,7 @@ class UserServiceTest {
         // then
         verify(userRepository, times(1)).save(captor.capture());
         assertEquals("test@abc.com", captor.getValue().getUserEmail());
+        assertTrue(captor.getValue().getIsActive());
         assertEquals("test@abc.com", user.getUserEmail());
         assertEquals("테스트", user.getUserName());
         assertEquals("00012341234", user.getPhone());
@@ -85,7 +86,6 @@ class UserServiceTest {
     @DisplayName("회원가입 실패_이메일 중복")
     void signUp_FAIL() {
         // given
-
         given(userRepository.existsByUserEmail("test@abc.com"))
             .willReturn(true);
 
@@ -101,7 +101,6 @@ class UserServiceTest {
     @DisplayName("로그인 성공")
     void signIn_SUCCESS() {
         // given
-
         User user = User.builder()
             .userEmail("test@abc.com")
             .userName("테스트")
@@ -128,7 +127,6 @@ class UserServiceTest {
     @DisplayName("로그인 실패_잘못된 ID")
     void signIn_FAIL_INCORRECT_ID() {
         // given
-
         // when
         CustomException exception = assertThrows(CustomException.class,
             () -> userService.signIn(signInForm));
