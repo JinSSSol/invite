@@ -1,7 +1,5 @@
 package com.study.api.group.dto;
 
-import com.study.domain.model.JoinGroup;
-import java.util.List;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +21,5 @@ public class GroupDto {
 
         Long id;
         String groupName;
-        List<JoinGroup> users;
     }
 }

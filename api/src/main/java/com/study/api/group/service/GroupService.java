@@ -38,7 +38,7 @@ public class GroupService {
         group.getUsers().add(joinGroup);
         user.getGroups().add(joinGroup);
 
-        return new GroupDto.Response(group.getId(), group.getGroupName(), group.getUsers());
+        return new GroupDto.Response(group.getId(), group.getGroupName());
     }
 
 
