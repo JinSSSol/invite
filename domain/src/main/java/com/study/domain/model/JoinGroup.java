@@ -48,4 +48,12 @@ public class JoinGroup {
     @LastModifiedDate
     private LocalDateTime modifiedAt;
 
+    protected void setUser(User user) {
+        this.user = user;
+    }
+
+    protected void setGroup(Group group) {
+        this.group = group;
+    }
+
 }

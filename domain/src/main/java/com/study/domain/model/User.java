@@ -57,5 +57,9 @@ public class User {
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 
+    public void add(JoinGroup joinGroup) {
+        this.groups.add(joinGroup);
+        joinGroup.setUser(this);
+    }
 
 }
