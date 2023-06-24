@@ -15,6 +15,9 @@ dependencies {
     runtimeOnly('com.h2database:h2')
     implementation('com.mysql:mysql-connector-j:8.0.32')
     implementation('org.springframework.boot:spring-boot-starter-data-redis')
+    implementation('it.ozimov:embedded-redis:0.7.3') {
+        exclude group: "org.slf4j", module: "slf4j-simple"
+    }
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
