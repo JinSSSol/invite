@@ -17,17 +17,19 @@ import com.study.domain.repository.JoinGroupRepository;
 import com.study.domain.repository.UserRepository;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class GroupInviteService {
-
-    private static final String INVITE_PREFIX = "invite:";
     private final UserRepository userRepository;
     private final JoinGroupRepository joinGroupRepository;
     private final RedisClient redisClient;
+
+    @Value("${redis.key.invite-prefix}")
+    private String invitePrefix;
 
     @Transactional
     public InviteDto inviteNewUser(Long groupId, InviteForm.New form, String managerEmail) {
@@ -95,6 +97,6 @@ public class GroupInviteService {
     }
 
     private void putRedis(String url, Invite invite) {
-        redisClient.put(INVITE_PREFIX + url, invite);
+        redisClient.putInvite(invitePrefix + ":" + url, invite);
     }
 }

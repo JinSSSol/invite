@@ -28,31 +28,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
         FilterChain filterChain) throws ServletException, IOException {
 
-        String path = request.getServletPath();
-        log.info("REQUEST [ SERVLET_PATH : {} ]", path);
-        if (isPass(path)) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-        String token = this.resolveTokenFromRequest(request);
+        log.info("REQUEST [ SERVLET_PATH : {} ]", request.getServletPath());
 
-        if (jwtProvider.validateToken(token)) {
-            SecurityContextHolder.getContext().setAuthentication(jwtProvider.getAuthentication(token));
+        String tokenHeader = request.getHeader(TOKEN_HEADER);
+        if (!ObjectUtils.isEmpty(tokenHeader)) {
+            String token = this.resolveTokenFromHeader(tokenHeader);
+
+            if (jwtProvider.validateToken(token)) {
+                SecurityContextHolder.getContext()
+                    .setAuthentication(jwtProvider.getAuthentication(token));
+            }
         }
 
         filterChain.doFilter(request, response);
     }
 
-    private boolean isPass(String path) {
-        return
-            path.contains("sign");
-    }
-    private String resolveTokenFromRequest(HttpServletRequest request) {
-        String token = request.getHeader(TOKEN_HEADER);
-
-        if (ObjectUtils.isEmpty(token) || !token.startsWith(TOKEN_PREFIX)) {
+    private String resolveTokenFromHeader(String header) {
+        if (!header.startsWith(TOKEN_PREFIX)) {
             throw new CustomException(INVALID_TOKEN_IN_HEADER);
         }
-        return token.substring(TOKEN_PREFIX.length());
+        return header.substring(TOKEN_PREFIX.length());
     }
 }

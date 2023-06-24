@@ -35,6 +35,15 @@ public class Invite {
             .build();
     }
 
+    public User toUser(String password) {
+        return User.builder()
+            .userEmail(this.getUserEmail())
+            .userName(this.getUserName())
+            .phone(this.getUserPhone())
+            .password(password)
+            .build();
+    }
+
     public void setSenderEmailAndGroupId(String email, Long groupId) {
         this.senderEmail = email;
         this.groupId = groupId;

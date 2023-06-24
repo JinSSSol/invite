@@ -6,6 +6,9 @@ spring:
   jwt:
     secretKey: amluc29sLXNwcmluZy1ib290LWludml0ZS1wcm9qZWN0LXR1dG9yaWFsLWp3dC1zZWNyZXQta2V5Cg==
 
+redis:
+  key:
+    invite-prefix: invite
 invite:
   url:
     expiration: 3600000 # 1000 * 60 * 60 = 1시간

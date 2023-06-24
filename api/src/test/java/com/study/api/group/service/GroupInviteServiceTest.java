@@ -73,7 +73,7 @@ class GroupInviteServiceTest {
         ArgumentCaptor<Invite> inviteCaptor = ArgumentCaptor.forClass(Invite.class);
 
         // then
-        verify(redisClient, times(1)).put(urlCaptor.capture(), inviteCaptor.capture());
+        verify(redisClient, times(1)).putInvite(urlCaptor.capture(), inviteCaptor.capture());
         Assertions.assertEquals(urlCaptor.getValue(), "invite:" + response.getUrl());
         Assertions.assertEquals(inviteCaptor.getValue().getUserEmail(), newForm.getUserEmail());
         Assertions.assertEquals(response.getReceiver(), newForm.getUserEmail());
@@ -148,7 +148,7 @@ class GroupInviteServiceTest {
         ArgumentCaptor<Invite> inviteCaptor = ArgumentCaptor.forClass(Invite.class);
 
         // then
-        verify(redisClient, times(1)).put(urlCaptor.capture(), inviteCaptor.capture());
+        verify(redisClient, times(1)).putInvite(urlCaptor.capture(), inviteCaptor.capture());
         Assertions.assertEquals(urlCaptor.getValue(), "invite:" + response.getUrl());
         Assertions.assertEquals(inviteCaptor.getValue().getUserEmail(), existForm.getUserEmail());
         Assertions.assertEquals(response.getReceiver(), existForm.getUserEmail());
