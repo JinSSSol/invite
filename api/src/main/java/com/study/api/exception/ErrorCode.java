@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 @Getter
 @RequiredArgsConstructor
 public enum ErrorCode {
+    // user
     NOT_FOUND_USER(BAD_REQUEST, "사용자를 찾을 수 없습니다."),
     USER_EMAIL_ALREADY_EXIST(BAD_REQUEST, "이미 존재하는 이메일 입니다."),
     NOT_MATCHED_PASSWORD(BAD_REQUEST, "비밀번호가 일치하지 않습니다."),
@@ -28,8 +29,11 @@ public enum ErrorCode {
     NOT_HAVE_MANAGER_AUTHORITY(BAD_REQUEST, "매니저 권한이 없습니다."),
     ALREADY_JOINED_USER(BAD_REQUEST, "이미 가입된 회원입니다."),
 
-    // Json
-    JSON_PARSING_ERROR(BAD_REQUEST, "JSON 데이터를 파싱하는데 실패하였습니다.");
+    // json
+    JSON_PARSING_ERROR(BAD_REQUEST, "JSON 데이터를 파싱하는데 실패하였습니다."),
+
+    // redis
+    FAILED_DELETE_REDIS(BAD_REQUEST, "Redis에서 삭제하는데 실패하였습니다.");
     private final HttpStatus httpStatus;
     private final String message;
 

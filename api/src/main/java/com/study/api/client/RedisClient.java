@@ -1,5 +1,6 @@
 package com.study.api.client;
 
+import static com.study.api.exception.ErrorCode.FAILED_DELETE_REDIS;
 import static com.study.api.exception.ErrorCode.JSON_PARSING_ERROR;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -34,12 +35,19 @@ public class RedisClient {
         }
     }
 
-    public void put(String key, Invite invite) {
+    public void putInvite(String key, Invite invite) {
         try {
             redisTemplate.opsForValue()
                 .set(key, mapper.writeValueAsString(invite), URL_EXPIRATION, TimeUnit.MILLISECONDS);
         } catch (JsonProcessingException e) {
             throw new CustomException(JSON_PARSING_ERROR);
+        }
+    }
+
+    public void delete(String key) {
+        Boolean result = redisTemplate.delete(key);
+        if (result == null || !result) {
+            throw new CustomException(FAILED_DELETE_REDIS);
         }
     }
 }
