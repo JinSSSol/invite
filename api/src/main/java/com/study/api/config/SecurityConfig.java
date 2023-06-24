@@ -32,7 +32,8 @@ public class SecurityConfig {
             .and()
             .authorizeRequests()
             .antMatchers("/**/sign-in",
-                "/**/sign-up")
+                "/**/sign-up",
+                "/**/join")
             .permitAll()
             .and()
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
