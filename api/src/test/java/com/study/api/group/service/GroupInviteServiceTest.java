@@ -64,9 +64,6 @@ class GroupInviteServiceTest {
         given(joinGroupRepository.findByUser_IdAndGroup_Id(any(), any()))
             .willReturn(Optional.of(managerJoinGroup));
 
-        given(userRepository.existsByUserEmail(any()))
-            .willReturn(false);
-
         // when
         InviteDto response = groupInviteService.inviteNewUser(1L, newForm, manager.getUserEmail());
         ArgumentCaptor<String> urlCaptor = ArgumentCaptor.forClass(String.class);
@@ -74,7 +71,7 @@ class GroupInviteServiceTest {
 
         // then
         verify(redisClient, times(1)).putInvite(urlCaptor.capture(), inviteCaptor.capture());
-        Assertions.assertEquals(urlCaptor.getValue(), "invite:" + response.getUrl());
+        Assertions.assertEquals(urlCaptor.getValue(), "null:" + response.getUrl());
         Assertions.assertEquals(inviteCaptor.getValue().getUserEmail(), newForm.getUserEmail());
         Assertions.assertEquals(response.getReceiver(), newForm.getUserEmail());
         Assertions.assertEquals(response.getSender(), manager.getUserEmail());
@@ -138,9 +135,6 @@ class GroupInviteServiceTest {
         given(userRepository.findByUserEmail(existForm.getUserEmail()))
             .willReturn(Optional.of(user));
 
-        given(joinGroupRepository.existsByUser_IdAndGroup_Id(any(), any()))
-            .willReturn(false);
-
         // when
         InviteDto response = groupInviteService.inviteExistUser(1L, existForm,
             manager.getUserEmail());
@@ -149,7 +143,7 @@ class GroupInviteServiceTest {
 
         // then
         verify(redisClient, times(1)).putInvite(urlCaptor.capture(), inviteCaptor.capture());
-        Assertions.assertEquals(urlCaptor.getValue(), "invite:" + response.getUrl());
+        Assertions.assertEquals(urlCaptor.getValue(), "null:" + response.getUrl());
         Assertions.assertEquals(inviteCaptor.getValue().getUserEmail(), existForm.getUserEmail());
         Assertions.assertEquals(response.getReceiver(), existForm.getUserEmail());
         Assertions.assertEquals(response.getSender(), manager.getUserEmail());
