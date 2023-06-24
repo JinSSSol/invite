@@ -45,10 +45,6 @@ public class User {
     @Builder.Default
     @OneToMany(mappedBy = "user")
     private List<JoinGroup> groups = new ArrayList<>();
-
-    @Column(name = "is_active")
-    private Boolean isActive;
-
     @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -57,5 +53,9 @@ public class User {
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 
+    public void add(JoinGroup joinGroup) {
+        this.groups.add(joinGroup);
+        joinGroup.setUser(this);
+    }
 
 }

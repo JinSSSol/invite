@@ -3,10 +3,12 @@ package com.study.api.group.dto;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 public class GroupDto {
 
     @AllArgsConstructor
+    @NoArgsConstructor
     @Getter
     public static class Request {
 
@@ -16,6 +18,7 @@ public class GroupDto {
     }
 
     @AllArgsConstructor
+    @NoArgsConstructor
     @Getter
     public static class Response {
 

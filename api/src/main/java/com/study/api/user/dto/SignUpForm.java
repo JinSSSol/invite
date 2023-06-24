@@ -20,5 +20,7 @@ public class SignUpForm {
     @NotBlank(message = "비밀번호는 필수 값입니다.")
     @Size(min = 8, message = "비밀번호는 8자 이상부터 가능합니다.")
     private String password;
+
+    @NotBlank(message = "핸드폰 번호는 필수 값입니다.")
     private String phone;
 }

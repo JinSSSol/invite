@@ -1,7 +1,6 @@
 package com.study.api.group.controller;
 
 import com.study.api.group.dto.GroupDto;
-import com.study.api.group.dto.GroupDto.Response;
 import com.study.api.group.service.GroupService;
 import java.security.Principal;
 import javax.validation.Valid;
@@ -20,7 +19,7 @@ public class GroupController {
     private final GroupService groupService;
 
     @PostMapping
-    public ResponseEntity<Response> makeGroup(@Valid @RequestBody GroupDto.Request request,
+    public ResponseEntity<GroupDto.Response> makeGroup(@Valid @RequestBody GroupDto.Request request,
         Principal principal) {
         GroupDto.Response response = groupService.add(request, principal.getName());
         return ResponseEntity.ok(response);

@@ -53,7 +53,7 @@ class JoinGroupRepositoryTest {
 
 
     @Test
-    @DisplayName("그룹테이블 ID로 조인그룹 조회_살퍄")
+    @DisplayName("그룹테이블 ID로 조인그룹 조회_실패")
     void findByGroup_Id_FAIL() {
         // given
         // when

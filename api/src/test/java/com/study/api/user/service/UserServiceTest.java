@@ -55,7 +55,6 @@ class UserServiceTest {
     @DisplayName("회원가입 성공")
     void signUp_SUCCESS() {
         // given
-
         given(userRepository.existsByUserEmail("test@abc.com"))
             .willReturn(false);
 
@@ -85,7 +84,6 @@ class UserServiceTest {
     @DisplayName("회원가입 실패_이메일 중복")
     void signUp_FAIL() {
         // given
-
         given(userRepository.existsByUserEmail("test@abc.com"))
             .willReturn(true);
 
@@ -101,7 +99,6 @@ class UserServiceTest {
     @DisplayName("로그인 성공")
     void signIn_SUCCESS() {
         // given
-
         User user = User.builder()
             .userEmail("test@abc.com")
             .userName("테스트")
@@ -128,7 +125,6 @@ class UserServiceTest {
     @DisplayName("로그인 실패_잘못된 ID")
     void signIn_FAIL_INCORRECT_ID() {
         // given
-
         // when
         CustomException exception = assertThrows(CustomException.class,
             () -> userService.signIn(signInForm));

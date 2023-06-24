@@ -46,4 +46,9 @@ public class Group {
 
     @LastModifiedDate
     private LocalDateTime modifiedAt;
+
+    public void add(JoinGroup joinGroup) {
+        this.users.add(joinGroup);
+        joinGroup.setGroup(this);
+    }
 }

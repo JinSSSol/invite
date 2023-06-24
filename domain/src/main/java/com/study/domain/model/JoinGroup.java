@@ -38,14 +38,20 @@ public class JoinGroup {
     @JoinColumn(name = "group_id")
     private Group group;
 
-
     private Boolean isManager;
-    private Boolean isActive;
 
     @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime modifiedAt;
+
+    protected void setUser(User user) {
+        this.user = user;
+    }
+
+    protected void setGroup(Group group) {
+        this.group = group;
+    }
 
 }
