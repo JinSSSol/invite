@@ -1,6 +1,7 @@
 package com.study.api.group.service;
 
 import static com.study.api.exception.ErrorCode.ALREADY_JOINED_USER;
+import static com.study.api.exception.ErrorCode.INVALID_INVITE_URL;
 import static com.study.api.exception.ErrorCode.NOT_FOUND_GROUP;
 
 import com.study.api.client.RedisClient;
@@ -73,7 +74,11 @@ public class GroupJoinService {
     }
 
     private Invite getRedisByUrl(String url) {
-        return redisClient.get(invitePrefix + ":" + url, Invite.class);
+        try {
+            return redisClient.get(invitePrefix + ":" + url, Invite.class);
+        } catch (CustomException e) {
+            throw new CustomException(INVALID_INVITE_URL);
+        }
     }
 
     private void deleteRedis(String url) {

@@ -13,6 +13,7 @@ import com.study.api.exception.CustomException;
 import com.study.api.group.dto.JoinGroupDto;
 import com.study.api.group.service.GroupJoinService;
 import com.study.api.security.JwtAuthenticationFilter;
+import com.study.domain.config.EmbeddedRedisConfig;
 import com.study.domain.repository.GroupRepository;
 import com.study.domain.repository.JoinGroupRepository;
 import com.study.domain.repository.UserRepository;
@@ -41,6 +42,8 @@ class GroupJoinControllerTest {
     private GroupJoinService groupJoinService;
     @MockBean
     private JpaMetamodelMappingContext jpaMetamodelMappingContext;
+    @MockBean
+    private EmbeddedRedisConfig embeddedRedisConfig;
     @Autowired
     private MockMvc mockMvc;
 

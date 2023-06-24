@@ -17,6 +17,7 @@ import com.study.api.group.dto.InviteForm.Exist;
 import com.study.api.group.dto.InviteForm.New;
 import com.study.api.group.service.GroupInviteService;
 import com.study.api.security.JwtAuthenticationFilter;
+import com.study.domain.config.EmbeddedRedisConfig;
 import com.study.domain.repository.GroupRepository;
 import com.study.domain.repository.JoinGroupRepository;
 import com.study.domain.repository.UserRepository;
@@ -48,6 +49,8 @@ class GroupInviteControllerTest {
     private GroupInviteService groupInviteService;
     @MockBean
     private JpaMetamodelMappingContext jpaMetamodelMappingContext;
+    @MockBean
+    private EmbeddedRedisConfig embeddedRedisConfig;
     @Autowired
     private MockMvc mockMvc;
     @Autowired
