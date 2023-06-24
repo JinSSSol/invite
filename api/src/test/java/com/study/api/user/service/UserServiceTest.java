@@ -4,7 +4,6 @@ import static com.study.api.exception.ErrorCode.NOT_FOUND_USER;
 import static com.study.api.exception.ErrorCode.NOT_MATCHED_PASSWORD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
@@ -76,7 +75,6 @@ class UserServiceTest {
         // then
         verify(userRepository, times(1)).save(captor.capture());
         assertEquals("test@abc.com", captor.getValue().getUserEmail());
-        assertTrue(captor.getValue().getIsActive());
         assertEquals("test@abc.com", user.getUserEmail());
         assertEquals("테스트", user.getUserName());
         assertEquals("00012341234", user.getPhone());

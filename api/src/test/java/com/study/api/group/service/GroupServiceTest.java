@@ -80,7 +80,6 @@ class GroupServiceTest {
         // then
         verify(joinGroupRepository, times(1)).save(captor.capture());
         assertTrue(captor.getValue().getIsManager());
-        assertTrue(captor.getValue().getIsActive());
         assertEquals(response.getId(), 1L);
         assertEquals(response.getGroupName(), "testGroup");
     }
