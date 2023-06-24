@@ -1,6 +1,7 @@
 package com.study.api.client;
 
 import static com.study.api.exception.ErrorCode.FAILED_DELETE_REDIS;
+import static com.study.api.exception.ErrorCode.INVALID_REDIS_KEY;
 import static com.study.api.exception.ErrorCode.JSON_PARSING_ERROR;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,13 +26,13 @@ public class RedisClient {
         String redisValue = (String) redisTemplate.opsForValue().get(key);
 
         if (ObjectUtils.isEmpty(redisValue)) {
-            return null;
-        } else {
-            try {
-                return mapper.readValue(redisValue, classType);
-            } catch (JsonProcessingException e) {
-                throw new CustomException(JSON_PARSING_ERROR);
-            }
+            throw new CustomException(INVALID_REDIS_KEY);
+        }
+
+        try {
+            return mapper.readValue(redisValue, classType);
+        } catch (JsonProcessingException e) {
+            throw new CustomException(JSON_PARSING_ERROR);
         }
     }
 
