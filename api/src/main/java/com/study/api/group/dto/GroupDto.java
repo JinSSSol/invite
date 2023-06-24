@@ -13,7 +13,7 @@ public class GroupDto {
     public static class Request {
 
         @Size(max = 20, message = "그룹명은 20자 이하로 가능합니다.")
-        String groupName;
+        private String groupName;
 
     }
 
@@ -22,7 +22,7 @@ public class GroupDto {
     @Getter
     public static class Response {
 
-        Long id;
-        String groupName;
+        private Long id;
+        private String groupName;
     }
 }

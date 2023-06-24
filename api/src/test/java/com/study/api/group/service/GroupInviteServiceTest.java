@@ -40,17 +40,17 @@ class GroupInviteServiceTest {
     @InjectMocks
     private GroupInviteService groupInviteService;
 
-    public final User manager = User.builder()
+    private final User manager = User.builder()
         .userEmail("manager@abc.com")
         .userName("manager")
         .build();
-    public final InviteForm.New newForm = New.builder()
+    private final InviteForm.New newForm = New.builder()
         .userEmail("new@abc.com")
         .userName("newUser")
         .phone("01012341234")
         .build();
 
-    public final InviteForm.Exist existForm = Exist.builder().userEmail("exist@abc.com").build();
+    private final InviteForm.Exist existForm = Exist.builder().userEmail("exist@abc.com").build();
 
     @Test
     @DisplayName("신규회원 초대링크 생성 성공")

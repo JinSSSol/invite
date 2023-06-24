@@ -10,4 +10,4 @@ invite:
   url:
     expiration: 3600000 # 1000 * 60 * 60 = 1시간
   newUser:
-    init-password: $2a$10$f/9rw0GwWmAkA4AqshUFaujnlivoAQ1YFZxVp93gZPiWFwHdGg/KO #0000
+    init-password: $2a$10$KBpUjQGbu//.6MSzsfKYEuMVtOpGEi89bnMk3PMb4D7qCDEgDldGu #00000000

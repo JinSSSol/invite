@@ -30,7 +30,7 @@ public class JwtProvider {
     private static final String KEY_ROLES = "roles";
     private static final long TOKEN_EXPIRE_TIME = 1000 * 60 * 60; // 1 hour
 
-    @Value("${spring.jwt.secretKey")
+    @Value("${spring.jwt.secretKey}")
     private String secretKey;
 
     public String generateToken(String userEmail, List<String> roles) {
