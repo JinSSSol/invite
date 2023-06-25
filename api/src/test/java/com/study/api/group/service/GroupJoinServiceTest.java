@@ -1,7 +1,7 @@
 package com.study.api.group.service;
 
 import static com.study.api.exception.ErrorCode.ALREADY_JOINED_USER;
-import static com.study.api.exception.ErrorCode.INVALID_INVITE_URL;
+import static com.study.api.exception.ErrorCode.INVALID_INVITE_URL_CODE;
 import static com.study.api.exception.ErrorCode.INVALID_REDIS_KEY;
 import static com.study.api.exception.ErrorCode.NOT_FOUND_GROUP;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -118,7 +118,7 @@ class GroupJoinServiceTest {
     }
 
     @Test
-    @DisplayName("초대링크 그룹가입 실패_잘못된 초대 URL")
+    @DisplayName("초대링크 그룹가입 실패_잘못된 초대 URL-CODE")
     void joinGroupByUrl_INVALID_URL() {
         // given
         given(redisClient.get(any(), any()))
@@ -129,7 +129,7 @@ class GroupJoinServiceTest {
             () -> groupJoinService.joinGroupByUrl(url));
 
         // then
-        assertEquals(exception.getErrorCode(), INVALID_INVITE_URL);
+        assertEquals(exception.getErrorCode(), INVALID_INVITE_URL_CODE);
     }
 
     @Test

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class InviteDto {
 
-    private String url;
+    private String urlCode;
     private String sender;
     private String receiver;
 
