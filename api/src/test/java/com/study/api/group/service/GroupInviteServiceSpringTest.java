@@ -17,6 +17,7 @@ import com.study.domain.model.User;
 import com.study.domain.repository.GroupRepository;
 import com.study.domain.repository.JoinGroupRepository;
 import com.study.domain.repository.UserRepository;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -65,6 +66,13 @@ class GroupInviteServiceSpringTest {
 
     }
 
+    @AfterAll
+    void clear() {
+        joinGroupRepository.deleteAll();
+        userRepository.deleteAll();
+        groupRepository.deleteAll();
+    }
+
     @Test
     @DisplayName("회원초대 성공_신규 회원")
     void inviteNewUser_SUCCESS() {
@@ -75,7 +83,7 @@ class GroupInviteServiceSpringTest {
             .phone("00012341234")
             .build();
 
-        Long groupId = 1L;
+        Long groupId = group.getId();
         String managerEmail = "manager@abc.com";
 
         // when
@@ -102,7 +110,7 @@ class GroupInviteServiceSpringTest {
             .phone("00012341234")
             .build();
 
-        Long groupId = 1L;
+        Long groupId = group.getId();
         String managerEmail = "manager@abc.com";
 
         // when
@@ -138,7 +146,7 @@ class GroupInviteServiceSpringTest {
             .phone("00012341234")
             .build();
 
-        Long groupId = 1L;
+        Long groupId = group.getId();
 
         // when
         CustomException exception = assertThrows(CustomException.class,
@@ -160,7 +168,7 @@ class GroupInviteServiceSpringTest {
             .build());
 
         InviteForm.Exist form = new Exist("exist@abc.com");
-        Long groupId = 1L;
+        Long groupId = group.getId();
         String managerEmail = "manager@abc.com";
 
         // when
@@ -192,7 +200,7 @@ class GroupInviteServiceSpringTest {
         group.add(joinGroup);
 
         InviteForm.Exist form = new Exist("exist@abc.com");
-        Long groupId = 1L;
+        Long groupId = group.getId();
         String managerEmail = "manager@abc.com";
 
         // when
