@@ -16,8 +16,8 @@ public class GroupJoinController {
 
     private final GroupJoinService groupJoinService;
     @PostMapping()
-    public ResponseEntity<JoinGroupDto> joinGroup(@RequestParam String url) {
-        JoinGroupDto response = groupJoinService.joinGroupByUrl(url);
+    public ResponseEntity<JoinGroupDto> joinGroup(@RequestParam String urlCode) {
+        JoinGroupDto response = groupJoinService.joinGroupByUrl(urlCode);
         return ResponseEntity.ok(response);
     }
 }

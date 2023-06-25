@@ -28,7 +28,7 @@ public enum ErrorCode {
     USER_NOT_JOINED_THIS_GROUP(BAD_REQUEST, "해당 그룹 회원이 아닙니다."),
     NOT_HAVE_MANAGER_AUTHORITY(BAD_REQUEST, "매니저 권한이 없습니다."),
     ALREADY_JOINED_USER(BAD_REQUEST, "이미 가입된 회원입니다."),
-    INVALID_INVITE_URL(BAD_REQUEST, "잘못된 초대 URL 입니다."),
+    INVALID_INVITE_URL_CODE(BAD_REQUEST, "잘못된 초대 URL 코드 입니다."),
 
     // json
     JSON_PARSING_ERROR(BAD_REQUEST, "JSON 데이터를 파싱하는데 실패하였습니다."),

@@ -71,7 +71,7 @@ class GroupInviteServiceTest {
 
         // then
         verify(redisClient, times(1)).putInvite(urlCaptor.capture(), inviteCaptor.capture());
-        Assertions.assertEquals(urlCaptor.getValue(), "null:" + response.getUrl());
+        Assertions.assertEquals(urlCaptor.getValue(), "null:" + response.getUrlCode());
         Assertions.assertEquals(inviteCaptor.getValue().getUserEmail(), newForm.getUserEmail());
         Assertions.assertEquals(response.getReceiver(), newForm.getUserEmail());
         Assertions.assertEquals(response.getSender(), manager.getUserEmail());
@@ -143,7 +143,7 @@ class GroupInviteServiceTest {
 
         // then
         verify(redisClient, times(1)).putInvite(urlCaptor.capture(), inviteCaptor.capture());
-        Assertions.assertEquals(urlCaptor.getValue(), "null:" + response.getUrl());
+        Assertions.assertEquals(urlCaptor.getValue(), "null:" + response.getUrlCode());
         Assertions.assertEquals(inviteCaptor.getValue().getUserEmail(), existForm.getUserEmail());
         Assertions.assertEquals(response.getReceiver(), existForm.getUserEmail());
         Assertions.assertEquals(response.getSender(), manager.getUserEmail());

@@ -77,7 +77,7 @@ class GroupInviteControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(newForm)))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.url").value("url"));
+            .andExpect(jsonPath("$.urlCode").value("url"));
     }
 
     @Test
@@ -112,7 +112,7 @@ class GroupInviteControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(existForm)))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.url").value("url"));
+            .andExpect(jsonPath("$.urlCode").value("url"));
 
     }
 

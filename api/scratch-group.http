@@ -28,5 +28,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob25nQGFiYy5jb20iLCJyb2xlc
 }
 
 ### 초대 링크 가입
-POST http://localhost:8080/groups/join?url=f2612d5bfc21410689c907c8362ad673
+POST http://localhost:8080/groups/join?urlCode=f2612d5bfc21410689c907c8362ad673
 

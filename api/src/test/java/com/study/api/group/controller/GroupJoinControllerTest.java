@@ -58,7 +58,7 @@ class GroupJoinControllerTest {
         // when
         // then
         mockMvc
-            .perform(post("/groups/join?url=testUrl").with(csrf()))
+            .perform(post("/groups/join?urlCode=testUrl").with(csrf()))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.userEmail").value("test@abc.com"))
             .andExpect(jsonPath("$.groupId").value(1))
@@ -77,7 +77,7 @@ class GroupJoinControllerTest {
 
         // when
         // then
-        mockMvc.perform(post("/groups/join?url=testUrl").with(csrf()))
+        mockMvc.perform(post("/groups/join?urlCode=testUrl").with(csrf()))
             .andExpect(status().isBadRequest())
             .andExpect(jsonPath("$.code").value("ALREADY_JOINED_USER"));
     }
@@ -92,7 +92,7 @@ class GroupJoinControllerTest {
 
         // when
         // then
-        mockMvc.perform(post("/groups/join?url=testUrl").with(csrf()))
+        mockMvc.perform(post("/groups/join?urlCode=testUrl").with(csrf()))
             .andExpect(status().isBadRequest())
             .andExpect(jsonPath("$.code").value("NOT_FOUND_GROUP"));
     }

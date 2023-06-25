@@ -1,7 +1,7 @@
 package com.study.api.group.service;
 
 import static com.study.api.exception.ErrorCode.ALREADY_JOINED_USER;
-import static com.study.api.exception.ErrorCode.INVALID_INVITE_URL;
+import static com.study.api.exception.ErrorCode.INVALID_INVITE_URL_CODE;
 import static com.study.api.exception.ErrorCode.NOT_FOUND_GROUP;
 
 import com.study.api.client.RedisClient;
@@ -33,16 +33,16 @@ public class GroupJoinService {
     @Value("${invite.newUser.init-password}")
     private String initPassword;
 
-    public JoinGroupDto joinGroupByUrl(String url) {
+    public JoinGroupDto joinGroupByUrl(String urlCode) {
 
-        Invite invite = this.getRedisByUrl(url);
+        Invite invite = this.getRedisByUrlCode(urlCode);
 
         User user = userRepository.findByUserEmail(invite.getUserEmail())
             .orElseGet(() -> userRepository.save(invite.toUser(initPassword)));
 
         JoinGroup joinGroup = this.joinGroup(user, invite.getGroupId());
 
-        this.deleteRedis(url);
+        this.deleteRedis(urlCode);
         return JoinGroupDto.from(joinGroup, user.getUserEmail());
     }
 
@@ -73,16 +73,16 @@ public class GroupJoinService {
         }
     }
 
-    private Invite getRedisByUrl(String url) {
+    private Invite getRedisByUrlCode(String urlCode) {
         try {
-            return redisClient.get(invitePrefix + ":" + url, Invite.class);
+            return redisClient.get(invitePrefix + ":" + urlCode, Invite.class);
         } catch (CustomException e) {
-            throw new CustomException(INVALID_INVITE_URL);
+            throw new CustomException(INVALID_INVITE_URL_CODE);
         }
     }
 
-    private void deleteRedis(String url) {
-        redisClient.delete(invitePrefix + ":" + url);
+    private void deleteRedis(String urlCode) {
+        redisClient.delete(invitePrefix + ":" + urlCode);
     }
 
 }
