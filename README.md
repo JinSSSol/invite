@@ -39,3 +39,5 @@
   - 그룹 가입
   - 요청파라미터로 urlCode 받아 그룹에 가입하고 해당 URL은 만료시킴
     
+## jar 파일 다운로드
+https://drive.google.com/file/d/1rO1_11fFgtSzTQH7vWbsba4144V7o4RG/view?usp=sharing
