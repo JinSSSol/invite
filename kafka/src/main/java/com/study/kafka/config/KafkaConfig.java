@@ -25,9 +25,9 @@ public class KafkaConfig {
         HashMap<String, Object> configurationProperties = new HashMap<>();
         configurationProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
         configurationProperties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-            new StringSerializer());
+            StringSerializer.class);
         configurationProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-            new StringSerializer());
+            StringSerializer.class);
 
         return new DefaultKafkaProducerFactory<>(configurationProperties);
     }
@@ -39,9 +39,9 @@ public class KafkaConfig {
         configurationProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "notice");
         configurationProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         configurationProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
-            new StringSerializer());
+            StringSerializer.class);
         configurationProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
-            new StringSerializer());
+            StringSerializer.class);
 
         return new DefaultKafkaConsumerFactory<>(configurationProperties);
     }
